@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.hackathon.inventory.domain.TransactionHead;
 import com.hackathon.inventory.model.CurrentUser;
+import com.hackathon.inventory.model.dto.OnlineProductListingDTO;
 
 public interface TransactionHeadService {
 	public TransactionHead saveOrUpdate(TransactionHead transactionHead, CurrentUser currentUser);
@@ -13,4 +14,6 @@ public interface TransactionHeadService {
 	public List<TransactionHead> list(CurrentUser currentUser);
 
 	public void delete(Long txnHeadId, CurrentUser currentUser);
+	
+	public List<OnlineProductListingDTO> productListing(CurrentUser currentUser);
 }

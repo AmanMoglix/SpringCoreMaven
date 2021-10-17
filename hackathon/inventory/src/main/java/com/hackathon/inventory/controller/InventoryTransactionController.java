@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hackathon.inventory.domain.TransactionHead;
 import com.hackathon.inventory.model.CurrentUser;
+import com.hackathon.inventory.model.dto.OnlineProductListingDTO;
 import com.hackathon.inventory.service.TransactionHeadService;
 
 @RestController
@@ -56,6 +57,18 @@ public class InventoryTransactionController {
 		return this.transactionHeadService.list(currentUser);
 	}
 
+
+	@RequestMapping(value = "/list", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
+	public List<OnlineProductListingDTO> Productlist(@RequestHeader("X_AUTHORITY") String authority,
+			@RequestHeader("X_USER_ID") String userId, @RequestHeader("X_USERNAME") String username,
+			@RequestHeader("X_LOCATION") String location) {
+
+		CurrentUser currentUser = CurrentUser.getInstance(userId, username, authority, location);
+
+		return this.transactionHeadService.productListing(currentUser);
+	}
+	
+	
 	@RequestMapping(value = "/{txnHeadId}", method = RequestMethod.DELETE, consumes = "application/json", produces = "application/json")
 	@ResponseStatus(HttpStatus.OK)
 	public void deleteCategory(@PathVariable("txnHeadId") Long txnHeadId,

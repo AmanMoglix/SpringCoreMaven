@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.google.gson.Gson;
 import com.hackathon.gateway.config.AccessAuthorityConfig;
 import com.hackathon.gateway.model.Token;
 import com.hackathon.gateway.service.AuthenticationService;

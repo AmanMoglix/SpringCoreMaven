@@ -11,7 +11,9 @@ import com.hackathon.inventory.domain.Stock;
 import com.hackathon.inventory.domain.TransactionDetails;
 import com.hackathon.inventory.domain.TransactionHead;
 import com.hackathon.inventory.model.CurrentUser;
+import com.hackathon.inventory.model.dto.OnlineProductListingDTO;
 import com.hackathon.inventory.repository.TransactionHeadRepository;
+import com.hackathon.inventory.service.DiscoveryService;
 import com.hackathon.inventory.service.StockService;
 import com.hackathon.inventory.service.TransactionHeadService;
 import com.hackathon.inventory.utils.ObjectBinder;
@@ -25,6 +27,8 @@ public class TransacrionHeadServiceImpl implements TransactionHeadService {
 	private StockService stockService;
 	@Autowired
 	private ObjectBinder objectBinder;
+	@Autowired
+	private DiscoveryService discoveryService;
 
 	@Override
 	public TransactionHead saveOrUpdate(TransactionHead transactionHead, CurrentUser currentUser) {
@@ -93,6 +97,16 @@ public class TransacrionHeadServiceImpl implements TransactionHeadService {
 	public void delete(Long txnHeadId, CurrentUser currentUser) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<OnlineProductListingDTO> productListing(CurrentUser currentUser) {
+		 return this.transactionHeadRepository.productListbyProductPrice();
+//		onlineProductListingDTOs.forEach(it->{
+//			if(it!=null)
+//				it.setCatalog(this.discoveryService.fetchByProductId(it.getProductId(), currentUser));
+//		});
+//		return onlineProductListingDTOs;
 	}
 
 }
